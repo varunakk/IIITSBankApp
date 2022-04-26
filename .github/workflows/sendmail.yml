@@ -15,6 +15,6 @@ jobs:
           username: ${{secrets.SMTP_USER}}
           password: ${{secrets.SMTP_PASSWORD}}
           subject: Github Actions job result
-          body: Build job of ${{github.repository}} completed successfully!
+          body: Changes of ${{github.repository}} is done!
           to: "venkateshkhandavilli326@gmail.com"
           from: "varunakrishna1@gmail.com"
