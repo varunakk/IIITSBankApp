@@ -35,12 +35,15 @@
     "web-vitals": "^1.1.2",
     "write-json-file": "^5.0.0"
   },
+  npm install serve --s
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+  "dev": "react-scripts start",
+   // "start": "react-scripts --openssl-legacy-provider start",
+  "start": "serve -s build",
     "build": "react-scripts --openssl-legacy-provider build",
-    "heroku-postbuild": "npm run build",
     "test": "react-scripts --openssl-legacy-provider test",
-    "eject": "react-scripts --openssl-legacy-provider eject"
+    "eject": "react-scripts --openssl-legacy-provider eject",
+      "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
