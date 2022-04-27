@@ -26,9 +26,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '17.x'
-      - run: npm install
-      - run: npm install jsonwebtoken 
-      - run: npm install react-icons
+      - run: npm install 
       - run: npx testing-library-envinfo react  #  npm test
   deploy:
     runs-on: ubuntu-latest
