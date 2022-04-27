@@ -10,17 +10,36 @@ function LoginAdmin(){
     const [usrname1,setUsername]=useState("");// this is for storing the user name
     const [Password1,setPassword]=useState("");// this is for storing the password
     const history= useHistory();// this is for getting the present url 
-    const LoginUser=()=>{
-        axios.post("/Login",{username:usrname1,password:Password1 }).then((res)=>{// axios sends the http async req to end points , here we are sending to port o 4000.
-            console.log("log success");
-            store.dispatch({type:"loginSuccess" ,payload:{ user:usrname1} });
-            history.push("/Upload");// redirecting 
+  const LoginUser=()=>{
+        let b=1;
+       if(!usrname1) {
+      return;
+  }
+  if(!Password1) {
+      return;
+  }
+     const st="https://appbankiiits.herokuapp.com/users/"+usrname1;
+console.log(st)
+     console.log(usrname1);
+  axios.get(st).then((res)=>{// axios sends the http async req to end points , here we are sending to port o 4000.
+   console.log("res data  ... ",res.data);
+   if(res.data.password==Password1){
+    console.log("success");
+    const id=res.data.id;
+    const token=jwt.sign({id},"Vikram@123",{expiresIn:300,});
 
-
-        }).catch((err)=>{
-            console.log("log fail");
-            store.dispatch({type:"loginFail"});
-        })
+  //  response.status(200).json("user authenticated");
+   store.dispatch({type:"loginSuccess" ,payload:{ user:usrname1,token:token} });
+            history.push("/Main");// redirecting 
+   }
+}).catch((err)=>{
+//alert("Log Fail");
+   console.log("1log fail");
+   //response.status(400).json("user does not exist");
+    store.dispatch({type:"loginFail"}); 
+   return;
+  
+})
     };
     return (
         <div className="form-box">
